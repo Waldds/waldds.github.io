@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teka-Teki</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #282c34;
+            color: white;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #28a745;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+
+        .button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Teka-Teki</h1>
+        <p id="teka-teki"></p>
+        <input type="text" id="jawaban" placeholder="Tulis jawaban Anda di sini...">
+        <button class="button" onclick="periksaJawaban()">Submit</button>
+    </div>
+
+    <script>
+        const tekaTekis = [
+            { pertanyaan: "Saya selalu berjalan tetapi tidak pernah pergi kemana-mana. Apakah saya?", jawaban: "jam" },
+            { pertanyaan: "Saya memiliki kota tetapi tidak memiliki rumah, saya memiliki gunung tetapi tidak memiliki pohon. Apakah saya?", jawaban: "peta" },
+            { pertanyaan: "Apa yang memiliki tangan tetapi tidak bisa bertepuk tangan?", jawaban: "jam" },
+            { pertanyaan: "Saya semakin basah semakin saya mengeringkan sesuatu. Apakah saya?", jawaban: "handuk" },
+            { pertanyaan: "Saya ringan seperti bulu, namun orang terkuat di dunia pun tidak bisa menahanku lama-lama. Apakah saya?", jawaban: "napas" }
+        ];
+
+        // Pilih teka-teki secara acak
+        const acakTekaTeki = tekaTekis[Math.floor(Math.random() * tekaTekis.length)];
+
+        // Tampilkan teka-teki di halaman
+        document.getElementById("teka-teki").innerText = acakTekaTeki.pertanyaan;
+
+        function periksaJawaban() {
+            let jawaban = document.getElementById("jawaban").value.toLowerCase().trim();
+            if (jawaban === acakTekaTeki.jawaban) {
+                window.location.href = "win.html";
+            } else {
+                window.location.href = "lose.html";
+            }
+        }
+    </script>
+</body>
+</html>
